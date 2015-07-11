@@ -6,8 +6,8 @@ var context = new (window.AudioContext || window.webkitAudioContext)()
 var nodes = []
 for(var i = 0; i < 3; i++){
   nodes.push(makeSynth(context))
-  nodes[i].volume.connect(context.destination)
-  nodes[i].source.start()
+  nodes[i].connect(context.destination)
+  nodes[i].start()
 }
 
 if (window.DeviceOrientationEvent) {
