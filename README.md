@@ -11,13 +11,13 @@ An experiment in using NPM for building modular noise instruments.
 
 Each instrument is an object filled with already-connected and setup audioNodes. The instrument responds to:
 
-keys() => returns list of keys to audioNodes
-connect(destination) => connect the output nodes to a destination or other nodes
-start() => calls start() on all the source nodes
-export() => returns JSON respresentation of the instrument
-import(data) => loads a JSON of the instrument state.
+- keys() => returns list of keys to audioNodes
+- connect(destination) => connect the output nodes to a destination or other nodes
+- start() => calls start() on all the source nodes
+- export() => returns JSON respresentation of the instrument
+- import(data) => loads a JSON of the instrument state.
 
-From there, auto-magically building UI for each of the nodes shouldn't be _too_ hard.
+From there, writing a module that auto-magically builds UI for each of the nodes shouldn't be _too_ hard.
 
 -----------------
 
