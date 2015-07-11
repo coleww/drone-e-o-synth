@@ -14,5 +14,9 @@
     "watchify": "*"
   },
   "author": "Cole Willsea <coleww@gmail.com> (http://colewillsea.com/)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "make-distortion-curve": "^1.0.0",
+    "range-fit": "^0.1.1"
+  }
 }

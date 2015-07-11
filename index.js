@@ -1,7 +1,6 @@
-module.exports.synth = function(context){
+var makeDistortionCurve = require('make-distortion-curve')
 
-
-
+module.exports = function(context){
   var nodes={};
   nodes.source = context.createOscillator();
   nodes.source.type = 1;
@@ -15,8 +14,6 @@ module.exports.synth = function(context){
   nodes.distortion = context.createWaveShaper();
   nodes.analyser = context.createAnalyser();
   nodes.distortion.curve = makeDistortionCurve(100);
-
-
 
   nodes.lowFilter = context.createBiquadFilter();
   nodes.lowFilter.Q.value = 25;
@@ -32,21 +29,13 @@ module.exports.synth = function(context){
   nodes.distortion.connect(nodes.lowFilter);
   nodes.lowFilter.connect(nodes.volume);
 
+  // nodes.import = function(data){
+    //
+  // }
+
+  // nodes.export = function(){
+  //   return {}
+  // }
+
   return nodes;
 }
-
-function makeDistortionCurve(amount) {
-  var k = typeof amount === 'number' ? amount : 50,
-    n_samples = 44100,
-    curve = new Float32Array(n_samples),
-    deg = Math.PI / 180,
-    i = 0,
-    x;
-  for ( ; i < n_samples; ++i ) {
-    x = i * 2 / n_samples - 1;
-    curve[i] = ( 3 + k ) * x * 20 * deg / ( Math.PI + k * Math.abs(x) );
-  }
-  return curve;
-}
-
-module.exports.distort = makeDistortionCurve
