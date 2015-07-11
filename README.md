@@ -1,6 +1,8 @@
 shake-it-off
 ----------------
 
+[PLAY IT](http://coleww.github.io/shake-it-off)
+
 ### DEV
 
 ```
