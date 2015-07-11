@@ -16,9 +16,11 @@ for(var i = 0; i < 3; i++){
   nodes[i].source.start()
 }
 
-
-window.addEventListener("deviceorientation", handleOrientation, true);
-
+if (window.DeviceOrientationEvent) {
+  window.addEventListener("deviceorientation", handleOrientation, true);
+} else {
+  document.body.textContent = 'BORKED yr browser does not support deviceorientation'
+}
 
 var r = 0
 var g = 0
