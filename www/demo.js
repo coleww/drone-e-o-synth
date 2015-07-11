@@ -19,6 +19,11 @@ for(var i = 0; i < 3; i++){
 
 window.addEventListener("deviceorientation", handleOrientation, true);
 
+
+var r = 0
+var g = 0
+var b = 0
+
 function handleOrientation(event) {
   var absolute = event.absolute;
 
@@ -29,37 +34,72 @@ function handleOrientation(event) {
   var alpha    = event.alpha;
   var beta     = event.beta;
   var gamma    = event.gamma;
-  console.log(alpha, beta, gamma)
+  // console.log(alpha, beta, gamma)
   if(alpha) {
+    r = mapRange(alpha, 0, 360, 0, 255)
     nodes[0].filter.frequency.value = mapRange(alpha, 0, 360, 200, 2500)
     nodes[0].lowFilter.frequency.value = mapRange(alpha, -180, 180, 300, 2000)
   }
   if(beta) {
-    nodes[1].filter.frequency.value = mapRange(beta, 0, 360, 200, 2500)
+    g = mapRange(beta, -180, 180, 0, 255)
+    nodes[1].filter.frequency.value = mapRange(beta, -180, 180, 200, 2500)
     nodes[1].lowFilter.frequency.value = mapRange(beta, -180, 180, 300, 2000)
   }
   if(gamma) {
-    nodes[2].filter.frequency.value = mapRange(gamma, 0, 360, 200, 2500)
-    nodes[2].lowFilter.frequency.value = mapRange(gamma, -180, 180, 300, 2000)
-
+    b = mapRange(gamma, -90, 90, 0, 255)
+    nodes[2].filter.frequency.value = mapRange(gamma, -90, 90 , 200, 2500)
+    nodes[2].lowFilter.frequency.value = mapRange(gamma, -90, 90, 300, 2000)
   }
+  // console.log("rgb("+r+","+g+","+b+")")
+  document.body.style.backgroundColor = "rgb("+~~r+","+~~g+","+~~b+")"
 }
 
-// window.addEventListener("devicemotion", handleMotion, true);
+window.addEventListener("devicemotion", handleMotion, true);
 
-// function handleMotion(eventData) {
-//   // these are probs all between 0 and 1 anyways?
+function handleMotion(eventData) {
+//   // these are probs all between 0 and 1 anyways? probably?
 //   // Grab the acceleration from the results
-//   var acceleration = eventData.acceleration;
-//   nodes.source.detune.value = acceleration.x * 250
+  var acceleration = eventData.acceleration;
+  if(acceleration.x){
+    nodes[0].source.detune.setValueAtTime(acceleration.x * 250, context.currentTime)
+    nodes[0].source.detune.linearRampToValueAtTime(0, context.currentTime+0.1)
+  }
+  if(acceleration.y){
+    nodes[1].source.detune.setValueAtTime(acceleration.y * 250, context.currentTime)
+    nodes[1].source.detune.linearRampToValueAtTime(0, context.currentTime+0.1)
+  }
+  if(acceleration.z){
+      nodes[2].source.detune.setValueAtTime(acceleration.z * 250, context.currentTime)
+      nodes[2].source.detune.linearRampToValueAtTime(0, context.currentTime+0.1)
+  }
 //   nodes.filter.Q.value = acceleration.y * 100
 //   nodes.lowFilter.Q.value = acceleration.z * 100
 
 
 //   // Grab the rotation rate from the results
-//   var rotation = eventData.rotationRate
+  var rotation = eventData.rotationRate
+  if(rotation.alpha){
+    nodes[0].filter.Q.setValueAtTime(rotation.alpha * 100, context.currentTime)
+    nodes[0].lowFilter.Q.setValueAtTime(rotation.alpha  * 100, context.currentTime)
+    nodes[0].filter.Q.linearRampToValueAtTime(0, context.currentTime + 0.1)
+    nodes[0].lowFilter.Q.linearRampToValueAtTime(0, context.currentTime + 0.1)
+  }
+  if(rotation.beta){
+    nodes[1].filter.Q.setValueAtTime(rotation.alpha * 100, context.currentTime)
+    nodes[1].lowFilter.Q.setValueAtTime(rotation.alpha  * 100, context.currentTime)
+    nodes[1].filter.Q.linearRampToValueAtTime(0, context.currentTime + 0.1)
+    nodes[1].lowFilter.Q.linearRampToValueAtTime(0, context.currentTime + 0.1)
+
+  }
+  if(rotation.gamma){
+    nodes[2].filter.Q.setValueAtTime(rotation.alpha * 100, context.currentTime)
+    nodes[2].lowFilter.Q.setValueAtTime(rotation.alpha  * 100, context.currentTime)
+    nodes[2].filter.Q.linearRampToValueAtTime(0, context.currentTime + 0.1)
+    nodes[2].lowFilter.Q.linearRampToValueAtTime(0, context.currentTime + 0.1)
+
+  }
 //   nodes.distortion.curve = distort(rotation.alpha * 400)
 //   nodes.filter.detune.value = rotation.beta * 500
 //   nodes.lowFilter.detune.value = rotation.gamma * 500
 
-// }
+}
