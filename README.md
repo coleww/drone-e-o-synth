@@ -5,7 +5,9 @@ drone-e-o-synth
 
 ----------------------------
 
-WEB AUDIO SYNTH MODULEZZZ
+[![NPM](https://nodei.co/npm/drone-e-o-synth.png)](https://nodei.co/npm/drone-e-o-synth/)
+
+WEB AUDIO SYNTH MODULEZZZ https://www.npmjs.com/package/drone-e-o-synth
 
 An experiment in using NPM for building modular noise instruments.
 
