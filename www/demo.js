@@ -33,18 +33,18 @@ function handleOrientation(event) {
   // console.log(alpha, beta, gamma)
   if(alpha) {
     r = mapRange(alpha, 0, 360, 0, 255)
-    nodes[0].filter.frequency.value = mapRange(alpha, 0, 360, 200, 2500)
-    nodes[0].lowFilter.frequency.value = mapRange(alpha, -180, 180, 300, 2000)
+    nodes[0].filter.frequency.value = mapRange(alpha, 0, 360, 200, 5000)
+    nodes[0].lowFilter.frequency.value = mapRange(alpha, 0, 360, 300, 3000)
   }
   if(beta) {
     g = mapRange(beta, -180, 180, 0, 255)
-    nodes[1].filter.frequency.value = mapRange(beta, -180, 180, 200, 2500)
-    nodes[1].lowFilter.frequency.value = mapRange(beta, -180, 180, 300, 2000)
+    nodes[1].filter.frequency.value = mapRange(beta, -180, 180, 300, 3000)
+    nodes[1].lowFilter.frequency.value = mapRange(beta, -180, 180, 200, 5000)
   }
   if(gamma) {
     b = mapRange(gamma, -90, 90, 0, 255)
-    nodes[2].filter.frequency.value = mapRange(gamma, -90, 90 , 200, 2500)
-    nodes[2].lowFilter.frequency.value = mapRange(gamma, -90, 90, 300, 2000)
+    nodes[2].filter.frequency.value = mapRange(gamma, -90, 90 , 400, 3500)
+    nodes[2].lowFilter.frequency.value = mapRange(gamma, -90, 90, 200, 5000)
   }
   // console.log("rgb("+r+","+g+","+b+")")
   document.body.style.backgroundColor = "rgb("+~~r+","+~~g+","+~~b+")"
