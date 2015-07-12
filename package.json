@@ -1,7 +1,7 @@
 {
   "name": "drone-e-o-synth",
   "description": "a lil web audio instrument for droning",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "scripts": {
     "build": "browserify www/demo.js -o www/bundle.js",
@@ -16,5 +16,19 @@
   "license": "MIT",
   "dependencies": {
     "make-distortion-curve": "^1.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coleww/shake-it-off.git"
+  },
+  "keywords": [
+    "audio",
+    "synth",
+    "webaudio",
+    "drone"
+  ],
+  "bugs": {
+    "url": "https://github.com/coleww/shake-it-off/issues"
+  },
+  "homepage": "https://github.com/coleww/shake-it-off"
 }
